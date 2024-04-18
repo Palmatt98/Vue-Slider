@@ -38,88 +38,40 @@
 						<div class="col-12 p-5">
 							<div class="my-carousel-container d-flex flex-column px-5" id="my-carousel">
 								<div class="my-carousel-images">
-									<div class="my-carousel-item active" carousel-item="1">
+									<div
+										v-for="(imageObject, index) in images"
+										class="my-carousel-item"
+										:class=" index == activeIndex ? 'active' : null"
+										carousel-item="1"
+									>
 										<img
 											class="img-fluid"
-											:src="images[activeIndex].image"
+											:src="imageObject.image"
 											alt="Marvel's Spiderman Miles Morale picture"
 										/>
 										<div class="item-description px-3">
-											<h2>{{images[activeIndex].title}}</h2>
-											<p>
-												{{images[activeIndex].text}} 	
-											</p>
+											<h2>{{imageObject.title}}</h2>
+											<p>{{imageObject.text}}</p>
 										</div>
 									</div>
-									<!-- <div class="my-carousel-item" carousel-item="1">
-										<img class="img-fluid" src="./img/02.webp" alt="Ratchet & Clank: Rift Apart" />
-										<div class="item-description px-3">
-											<h2>Ratchet & Clank: Rift Apart</h2>
-											<p>
-												Go dimension-hopping with Ratchet and Clank as they take on an evil
-												emperor from another reality.
-											</p>
-										</div>
-									</div> -->
-									
-									<!-- <div class="my-carousel-item" carousel-item="1">
-										<img class="img-fluid" src="./img/04.webp" alt="Ratchet & Clank: Rift Apart" />
-										<div class="item-description px-3">
-											<h2>Ratchet & Clank: Rift Apart</h2>
-											<p>
-												Go dimension-hopping with Ratchet and Clank as they take on an evil
-												emperor from another reality.
-											</p>
-										</div>
-									</div> -->
-									<!-- <div class="my-carousel-item" carousel-item="1">
-										<img class="img-fluid" src="./img/05.webp" alt="Ratchet & Clank: Rift Apart" />
-										<div class="item-description px-3">
-											<h2>Ratchet & Clank: Rift Apart</h2>
-											<p>
-												Go dimension-hopping with Ratchet and Clank as they take on an evil
-												emperor from another reality.
-											</p>
-										</div>
-									</div> -->
 								</div>
 								<div class="my-thumbnails position-relative">
 									<!-- prev -->
-									<div class="my-previous position-absolute">
-										<span class="my-prev-hook" @click="showDown"></span>
+									<div class="my-previous position-absolute" @click="showPrev">
+										<span class="my-prev-hook"></span>
 									</div>
 									<!-- next -->
-									<div class="my-next  position-absolute" @click="showNext">
+									<div class="my-next position-absolute" @click="showNext">
 										<span class="my-next-hook"></span>
 									</div>
 									<!-- immagini interne -->
 									<img
-										v-for="imageObject in images"
-										class="img-fluid my-thumbnail active"
+										v-for="(imageObject, index) in images"
+										class="img-fluid my-thumbnail"
+										:class="index == activeIndex ? 'active' : null"
 										:src="imageObject.image"
 										alt="Thumbnail of Marvel's Spiderman Miles Morale picture"
 									/>
-									<img src="" alt="">
-									<!-- <img
-										class="img-fluid my-thumbnail"
-										src="./img/02.webp"
-										alt="Thumbnail of Ratchet & Clank: Rift Apart picture"
-									/>
-									<img
-										class="img-fluid my-thumbnail"
-										src="./img/03.webp"
-										alt="Thumbnail of Ratchet & Clank: Rift Apart picture"
-									/>
-									<img
-										class="img-fluid my-thumbnail"
-										src="./img/04.webp"
-										alt="Thumbnail of Ratchet & Clank: Rift Apart picture"
-									/>
-									<img
-										class="img-fluid my-thumbnail"
-										src="./img/05.webp"
-										alt="Thumbnail of Ratchet & Clank: Rift Apart picture"
-									/> -->
 								</div>
 							</div>
 						</div>
@@ -128,7 +80,7 @@
 							<button id="my-order-button" class="btn btn-primary">
 								Inverti l'ordine di scorrimento
 							</button>
-							<button id="my-stop-button" class="btn btn-primary" @click="advanced">
+							<button id="my-stop-button" class="btn btn-primary" @click="advance">
 								Interrompi / Fai ripartire lo scorrimento
 							</button>
 						</div>
