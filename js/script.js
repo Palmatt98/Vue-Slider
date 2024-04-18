@@ -3,7 +3,7 @@ const { createApp } = Vue;
 createApp({
 	data() {
 		return {
-			activeIndex:  0,
+			activeIndex: 0,
 			images: [
 				{
 					image: "img/01.webp",
@@ -33,22 +33,33 @@ createApp({
 			],
 		};
 	},
-	methods:{
-		showNext: function(){
-			if( this.activeIndex === this.images.length -1 ){
-				this.activeIndex = 0
-			}else {
+	methods: {
+		showNext: function () {
+			if (this.activeIndex === this.images.length - 1) {
+				this.activeIndex = 0;
+			} else {
 				this.activeIndex++;
 			}
-		
-			
 		},
-		showDown: function(){
+		showDown: function () {
 			if (this.activeIndex === 0) {
 				this.activeIndex = 4;
 			} else {
 				this.activeIndex--;
 			}
+		},
+		liitleImg: function () {
+			for (const image of this.images) {
+			}
+		},
+		advanced: function(){
+			const autoIMage = setInterval(()=>{
+				if (this.activeIndex === this.images.length - 1) {
+					this.activeIndex = 0;
+				} else {
+					this.activeIndex++;
+				}
+			},1000)
 		}
-	}
+	},
 }).mount("#app");
